@@ -17,7 +17,7 @@ export const blogPosts = pgTable(
 		content: text("content").notNull(),
 		icon: varchar("icon", { length: 10 }).notNull().default("📝"),
 		read_time: varchar("read_time", { length: 20 }).notNull().default("3分钟"),
-		created_at: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
+		created_at: timestamp("created_at", { withTimezone: true, mode: 'string' }).defaultNow().notNull(),
 	},
 	(table) => [
 		index("blog_posts_created_at_idx").on(table.created_at),
@@ -31,7 +31,7 @@ export const users = pgTable(
 		id: serial().primaryKey(),
 		username: varchar("username", { length: 50 }).notNull().unique(),
 		password: varchar("password", { length: 255 }).notNull(),
-		created_at: timestamp("created_at", { withTimezone: true }).defaultNow().notNull(),
+		created_at: timestamp("created_at", { withTimezone: true, mode: 'string' }).defaultNow().notNull(),
 	},
 	(table) => [
 		index("users_username_idx").on(table.username),
@@ -48,7 +48,7 @@ export const gameRecords = pgTable(
 		final_score: integer("final_score").notNull().default(0),
 		result: varchar("result", { length: 20 }).notNull(),
 		rounds: integer("rounds").notNull().default(0),
-		played_at: timestamp("played_at", { withTimezone: true }).defaultNow().notNull(),
+		played_at: timestamp("played_at", { withTimezone: true, mode: 'string' }).defaultNow().notNull(),
 	},
 	(table) => [
 		index("game_records_user_id_idx").on(table.user_id),
