@@ -10,6 +10,13 @@ DEPLOY_RUN_PORT="${DEPLOY_RUN_PORT:-$PORT}"
 start_service() {
     cd "${COZE_WORKSPACE_PATH}"
     echo "Starting HTTP service on port ${DEPLOY_RUN_PORT} for deploy..."
+
+    if [ -f ".env.local" ]; then
+        set -a
+        # shellcheck disable=SC1091
+        source ".env.local"
+        set +a
+    fi
     
     # Find the standalone server.js (may be nested due to monorepo structure)
     if [ -f ".next/standalone/workspace/projects/server.js" ]; then

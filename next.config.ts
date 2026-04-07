@@ -4,6 +4,9 @@ const nextConfig: NextConfig = {
   // outputFileTracingRoot: path.resolve(__dirname, '../../'),  // Uncomment and add 'import path from "path"' if needed
   /* config options here */
   allowedDevOrigins: ['*.dev.coze.site'],
+  experimental: {
+    workerThreads: process.env.NEXT_BUILD_WORKER_THREADS === 'true',
+  },
   output: 'standalone',
   images: {
     remotePatterns: [

@@ -8,10 +8,10 @@ cd "${COZE_WORKSPACE_PATH}"
 echo "Installing dependencies..."
 pnpm install --prefer-frozen-lockfile --prefer-offline --loglevel debug --reporter=append-only
 
-echo "Building the Next.js project..."
-npx next build
+echo "Checking TypeScript..."
+node ./node_modules/typescript/lib/tsc.js -p tsconfig.json --noEmit
 
-echo "Bundling server with tsup..."
-npx tsup src/server.ts --format cjs --platform node --target node20 --outDir dist --no-splitting --no-minify
+echo "Building the Next.js project..."
+NEXT_BUILD_WORKER_THREADS=true pnpm exec next build --experimental-build-mode compile
 
 echo "Build completed successfully!"
