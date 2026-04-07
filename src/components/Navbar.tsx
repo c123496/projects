@@ -71,7 +71,7 @@ export function Navbar({ onLogout, hasSaveMessage, onConfirmLogout }: NavbarProp
       {/* 左侧：Logo */}
       <Link href="/" className="flex items-center gap-2">
         <span className="text-2xl">💕</span>
-        <span className="font-bold text-lg text-purple-600">
+        <span className="font-bold text-lg bg-gradient-to-r from-pink-500 to-rose-500 bg-clip-text text-transparent">
           哄哄模拟器
         </span>
       </Link>
